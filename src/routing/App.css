@@ -1,0 +1,30 @@
+.root {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden auto;
+}
+
+.container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 2rem 1rem;
+  margin: auto;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 720px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .container {
+    max-width: 1000px;
+  }
+}
