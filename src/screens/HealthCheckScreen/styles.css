@@ -1,0 +1,15 @@
+.health-check-container {
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.health-check-container h3 {
+  font-size: var(--text-size-very-large);
+  font-weight: var(--text-weight-medium);
+  text-transform: uppercase;
+  margin: 0;
+}
