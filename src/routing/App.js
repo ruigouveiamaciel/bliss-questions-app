@@ -4,6 +4,7 @@ import getHealthStatus from "../api/getHealthStatus";
 import useCancel from "../hooks/useCancel";
 import "./App.css";
 import HealthCheckScreen from "../screens/HealthCheckScreen";
+import QuestionsListScreen from "../screens/QuestionsListScreen";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -49,11 +50,7 @@ export default function App() {
           />
         ) : (
           <Routes>
-            <Route
-              path="/questions"
-              exact
-              element={<div>Hello world! This is the questions page!</div>}
-            />
+            <Route path="/questions" exact element={<QuestionsListScreen />} />
             <Route path="*" element={<Navigate to="/questions" replace />} />
           </Routes>
         )}
