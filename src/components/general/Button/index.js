@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
 import "./styles.css";
 
-export default function Button({ error, className, ...props }) {
-  const defaultClassName = `button ${error ? "error" : "normal"}`;
+export default function Button({ error, disabled, className, ...props }) {
+  const defaultClassName = `button ${error ? "error" : "normal"} ${
+    disabled ? "disabled" : ""
+  }`;
 
   return (
     <button
@@ -17,4 +19,5 @@ export default function Button({ error, className, ...props }) {
 Button.propTypes = {
   className: PropTypes.string,
   error: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
