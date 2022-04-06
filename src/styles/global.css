@@ -1,5 +1,6 @@
 html {
   background-color: var(--color-gray-100);
+  color: var(--color-gray-700);
 }
 
 body {
@@ -14,5 +15,4 @@ body {
   font-size: var(--text-size-normal);
   font-weight: var(--text-weight-normal);
   line-height: var(--text-line-height-normal);
-  color: var(--color-gray-700);
 }
