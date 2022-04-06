@@ -90,18 +90,20 @@ export default function QuestionsListScreen() {
           Clear
         </Button>
       </div>
-      <div className="questions-container">
-        {questions.map((question, index) => (
-          <QuestionCard
-            key={index}
-            bannerSrc={question.thumbnail}
-            bannerAlt={`Thumbnail ${question.title}`}
-            title={question.title}
-            votes={question.votes}
-            timestamp={question.timestamp}
-          />
-        ))}
-      </div>
+      {questions.length > 0 && (
+        <div className="questions-container">
+          {questions.map((question, index) => (
+            <QuestionCard
+              key={index}
+              bannerSrc={question.thumbnail}
+              bannerAlt={`Thumbnail ${question.title}`}
+              title={question.title}
+              votes={question.votes}
+              timestamp={question.timestamp}
+            />
+          ))}
+        </div>
+      )}
       {!endReached && (
         <div ref={ref} className="questions-container">
           {Array(pageSize)
