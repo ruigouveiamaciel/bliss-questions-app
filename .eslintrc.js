@@ -28,6 +28,7 @@ module.exports = {
     "prettier/prettier": "error",
     "react/react-in-jsx-scope": "off",
     "require-jsdoc": "off",
+    "promise/catch-or-return": "off",
   },
   settings: {
     react: {
