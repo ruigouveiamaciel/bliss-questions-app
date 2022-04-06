@@ -89,6 +89,7 @@ export default function QuestionsListScreen() {
         <Button error disabled={filter === ""} onClick={() => setFilter("")}>
           Clear
         </Button>
+        <Button>Share</Button>
       </div>
       {questions.length > 0 && (
         <div className="questions-container">
