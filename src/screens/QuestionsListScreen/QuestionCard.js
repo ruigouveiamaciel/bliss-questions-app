@@ -13,14 +13,20 @@ const QuestionCard = forwardRef(
           {bannerSrc && <img src={bannerSrc} alt={bannerAlt} />}
         </div>
         <div className="question-content">
-          <h3>{title}</h3>
+          <h3 className={title ? undefined : "skeleton"}>
+            {title ? title : "#"}
+          </h3>
           <div>
-            <FontAwesomeIcon icon={faCheckToSlot} className="icon" />
-            <span>{votes} Votes</span>
+            {votes && <FontAwesomeIcon icon={faCheckToSlot} className="icon" />}
+            <span className={votes ? undefined : "skeleton"}>
+              {votes ? `${votes} votes` : "##########"}
+            </span>
           </div>
           <div>
-            <FontAwesomeIcon icon={faClock} className="icon" />
-            <span>{timestamp}</span>
+            {timestamp && <FontAwesomeIcon icon={faClock} className="icon" />}
+            <span className={timestamp ? undefined : "skeleton"}>
+              {timestamp ? timestamp : "############"}
+            </span>
           </div>
         </div>
       </Card>

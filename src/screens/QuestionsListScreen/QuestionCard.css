@@ -1,5 +1,6 @@
 .question {
   flex-grow: 1;
+  flex-basis: 1;
   box-sizing: border-box;
   min-width: 100%;
 
@@ -47,6 +48,7 @@
   align-items: center;
 
   font-size: var(--text-size-large);
+  min-height: var(--text-line-height-normal);
   font-weight: var(--text-weight-medium);
 }
 
@@ -62,4 +64,5 @@
   flex-direction: row;
   align-items: center;
   gap: 0.5rem;
+  height: var(--text-line-height-normal);
 }

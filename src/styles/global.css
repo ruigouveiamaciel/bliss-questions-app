@@ -16,3 +16,11 @@ body {
   font-weight: var(--text-weight-normal);
   line-height: var(--text-line-height-normal);
 }
+
+.skeleton {
+  content: "######";
+  color: transparent;
+  background-color: var(--color-gray-200);
+  border-radius: var(--border-radius-size);
+  line-height: 1;
+}

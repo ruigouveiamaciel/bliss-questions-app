@@ -101,16 +101,16 @@ export default function QuestionsListScreen() {
             timestamp={question.timestamp}
           />
         ))}
-        {!endReached &&
-          Array(pageSize)
+      </div>
+      {!endReached && (
+        <div ref={ref} className="questions-container">
+          {Array(pageSize)
             .fill()
             .map((_, index) => (
-              <QuestionCard
-                ref={index === 0 ? ref : undefined}
-                key={questions.length + index + 1}
-              />
+              <QuestionCard key={index} />
             ))}
-      </div>
+        </div>
+      )}
     </>
   );
 }

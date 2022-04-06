@@ -34,3 +34,7 @@
   flex-wrap: wrap;
   gap: 1rem;
 }
+
+.questions-container:not(:last-child) {
+  margin-bottom: 1rem;
+}
