@@ -33,6 +33,11 @@ export default function QuestionsListScreen() {
       debouncedFilter !== "" ? debouncedFilter : undefined
     );
 
+    // Cancel processing if the HTTP request failed.
+    if (data === false) {
+      return;
+    }
+
     // If we have reached the end of the list, disable infinite loading.
     if (data.length < pageSize) {
       setEndReached(true);
