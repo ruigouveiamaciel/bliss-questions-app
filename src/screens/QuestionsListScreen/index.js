@@ -83,6 +83,7 @@ export default function QuestionsListScreen() {
       <div className="filter-container">
         <input
           ref={searchBarRef}
+          className="card"
           placeholder="Search"
           value={filter}
           onChange={(event) => setFilter(event.target.value)}
@@ -108,7 +109,7 @@ export default function QuestionsListScreen() {
         </div>
       )}
       {!endReached && (
-        <div ref={ref} className="questions-container">
+        <div ref={ref} className="questions-container loading">
           {Array(pageSize)
             .fill()
             .map((_, index) => (
