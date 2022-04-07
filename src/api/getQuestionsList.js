@@ -7,7 +7,8 @@ import api from "./api.js";
  * @param {number} limit Number of questions to fetch.
  * @param {number} offset Number of questions to skip.
  * @param {String|undefined} filter The search filter.
- * @returns {Array} Array of questions according to the API specification.
+ * @returns {(Array|false)} false if the http request failed, otherwise an array
+ * of questions according to the API specification.
  */
 export default async function getQuestionsList(
   limit,
