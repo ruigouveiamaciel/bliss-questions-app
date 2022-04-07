@@ -17,6 +17,11 @@ body {
   line-height: var(--text-line-height-normal);
 }
 
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 .skeleton {
   content: "######";
   color: transparent;
