@@ -39,6 +39,7 @@ export default function QuestionsListScreen() {
     }
 
     const newQuestions = data.map((question) => ({
+      id: question.id,
       title: question.question,
       thumbnail: question.thumb_url,
       timestamp: new Date(question.published_at).toLocaleString(),
@@ -96,6 +97,7 @@ export default function QuestionsListScreen() {
           {questions.map((question, index) => (
             <QuestionCard
               key={index}
+              id={question.id}
               bannerSrc={question.thumbnail}
               bannerAlt={`Thumbnail ${question.title}`}
               title={question.title}
