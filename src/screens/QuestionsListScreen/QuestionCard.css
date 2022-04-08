@@ -49,10 +49,6 @@
 .question .question-content h3 {
   margin: 0 0 0.5rem 0;
 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
   font-size: var(--text-size-large);
   min-height: var(--text-line-height-normal);
   font-weight: var(--text-weight-medium);
