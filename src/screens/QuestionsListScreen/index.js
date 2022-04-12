@@ -6,6 +6,7 @@ import "./styles.css";
 import QuestionCard from "./QuestionCard";
 import getQuestionsList from "../../api/getQuestionsList";
 import { Link, useSearchParams } from "react-router-dom";
+import TextInput from "../../components/inputs/TextInput";
 
 export default function QuestionsListScreen() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -86,9 +87,9 @@ export default function QuestionsListScreen() {
   return (
     <>
       <div className="filter-container">
-        <input
+        <TextInput
           ref={searchBarRef}
-          className="card"
+          className="search"
           placeholder="Search"
           value={filter}
           onChange={(event) => setFilter(event.target.value)}

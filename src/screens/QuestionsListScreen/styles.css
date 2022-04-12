@@ -7,20 +7,8 @@
   gap: 0.75rem;
 }
 
-.filter-container input {
+.filter-container .search {
   flex-grow: 1;
-  min-width: 0;
-  box-sizing: border-box;
-  padding: 0.5rem 1rem;
-}
-
-.filter-container input:focus {
-  border: 1px solid var(--color-gray-400);
-  outline: none;
-}
-
-.filter-container input::placeholder {
-  color: var(--color-gray-400);
 }
 
 .questions-container {

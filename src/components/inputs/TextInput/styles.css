@@ -1,0 +1,14 @@
+.card.text-input {
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0.5rem 1rem;
+}
+
+.card.text-input:focus {
+  border: 1px solid var(--color-gray-400);
+  outline: none;
+}
+
+.card.text-input::placeholder {
+  color: var(--color-gray-400);
+}
