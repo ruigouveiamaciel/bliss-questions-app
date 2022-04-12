@@ -22,4 +22,4 @@ export default function Radio({ label, checked, ...props }) {
   );
 }
 
-Radio.propTypes = { label: PropTypes.string, checked: PropTypes.bool };
+Radio.propTypes = { label: PropTypes.node, checked: PropTypes.bool };
