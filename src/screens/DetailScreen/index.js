@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Button from "../../components/general/Button";
 import getQuestionData from "../../api/getQuestionData";
 import useCancel from "../../hooks/useCancel";
@@ -39,7 +39,9 @@ export default function DetailScreen() {
 
   return (
     <div className="detail-container">
-      <Button className="return-button">Return to List</Button>
+      <Link to="/questions">
+        <Button error>Close</Button>
+      </Link>
       <div className="card">
         <div className="image-container">
           {questionData && (
@@ -78,12 +80,19 @@ export default function DetailScreen() {
                   }}
                 />
               ))
-            : null}
+            : Array(4)
+                .fill()
+                .map((_, index) => (
+                  <Radio
+                    key={`skeleton-${index}`}
+                    label={<span className="skeleton">###########</span>}
+                  />
+                ))}
         </div>
         <div className="divider" />
         <div className="button-container">
+          <Button secondary>Share</Button>
           <Button disabled={selectedChoice === null}>Vote</Button>
-          <Button disabled={selectedChoice === null}>Share</Button>
         </div>
       </div>
     </div>
