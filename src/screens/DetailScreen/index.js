@@ -131,7 +131,16 @@ export default function DetailScreen() {
         </div>
         <div className="divider" />
         <div className="button-container">
-          <Button secondary>Share</Button>
+          <Link
+            to={{
+              pathname: "/share",
+            }}
+            state={{
+              from: window.location.href,
+            }}
+          >
+            <Button secondary>Share</Button>
+          </Link>
           <Button
             disabled={selectedChoice === null || voted}
             onClick={voteAction}

@@ -6,6 +6,7 @@ import "./App.css";
 import HealthCheckScreen from "../screens/HealthCheckScreen";
 import QuestionsListScreen from "../screens/QuestionsListScreen";
 import DetailScreen from "../screens/DetailScreen";
+import ShareScreen from "../screens/ShareScreen";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -57,7 +58,7 @@ export default function App() {
               element={<DetailScreen />}
             />
             <Route path="/questions" exact element={<QuestionsListScreen />} />
-
+            <Route path="/share" exact element={<ShareScreen />} />
             <Route path="*" element={<Navigate to="/questions" replace />} />
           </Routes>
         )}

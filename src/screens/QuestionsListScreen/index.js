@@ -5,7 +5,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import "./styles.css";
 import QuestionCard from "./QuestionCard";
 import getQuestionsList from "../../api/getQuestionsList";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 export default function QuestionsListScreen() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -96,7 +96,16 @@ export default function QuestionsListScreen() {
         <Button error disabled={filter === ""} onClick={() => setFilter("")}>
           Clear
         </Button>
-        <Button secondary>Share</Button>
+        <Link
+          to={{
+            pathname: "/share",
+          }}
+          state={{
+            from: window.location.href,
+          }}
+        >
+          <Button secondary>Share</Button>
+        </Link>
       </div>
       {questions.length > 0 && (
         <div className="questions-container">
