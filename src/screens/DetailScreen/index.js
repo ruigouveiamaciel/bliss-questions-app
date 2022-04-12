@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import Button from "../../components/inputs/Button";
 import getQuestionData from "../../api/getQuestionData";
 import useCancel from "../../hooks/useCancel";
@@ -77,9 +77,12 @@ export default function DetailScreen() {
     }
   }, [voted, questionData, selectedChoice]);
 
+  const location = useLocation();
+  const from = location.state ? location.state.from : null;
+
   return (
     <div className="detail-container">
-      <Link to="/questions">
+      <Link to={from ? from : "/questions"}>
         <Button error>Close</Button>
       </Link>
       <div className="card">

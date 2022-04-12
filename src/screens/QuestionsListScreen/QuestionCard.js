@@ -13,7 +13,11 @@ export default function QuestionCard({
   timestamp,
 }) {
   return (
-    <Link to={`/questions/${id}`} className={`card question`}>
+    <Link
+      to={`/questions/${id}`}
+      state={{ from: window.location.pathname + window.location.search }}
+      className={`card question`}
+    >
       <div className="question-banner">
         {bannerSrc && <img src={bannerSrc} alt={bannerAlt} />}
       </div>
