@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
 import Button from "../../components/inputs/Button";
 import getQuestionData from "../../api/getQuestionData";
@@ -7,6 +7,7 @@ import "./styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckToSlot, faClock } from "@fortawesome/free-solid-svg-icons";
 import Radio from "../../components/inputs/Radio";
+import updateQuestion from "../../api/updateQuestion";
 
 export default function DetailScreen() {
   // Retrieve question ID from params.
@@ -36,6 +37,45 @@ export default function DetailScreen() {
     questionData && new Date(questionData.published_at).toLocaleString();
 
   const [selectedChoice, setSelectedChoice] = useState(null);
+
+  const [voted, setVoted] = useState(false);
+
+  const voteAction = useCallback(() => {
+    if (!voted && selectedChoice !== null) {
+      const oldQuestionData = questionData;
+      const newQuestionData = {
+        ...questionData,
+        choices: [...questionData.choices],
+      };
+
+      newQuestionData.choices[selectedChoice] = {
+        ...newQuestionData.choices[selectedChoice],
+        votes: newQuestionData.choices[selectedChoice].votes + 1,
+      };
+
+      setVoted(true);
+      setQuestionData(newQuestionData);
+      updateQuestion(newQuestionData)
+        .then((res) => {
+          if (!isCancelled) {
+            if (res !== false) {
+              setQuestionData(res);
+            } else {
+              setVoted(false);
+              setQuestionData(oldQuestionData);
+            }
+          }
+
+          return res;
+        })
+        .catch(() => {
+          if (!isCancelled) {
+            setVoted(false);
+            setQuestionData(oldQuestionData);
+          }
+        });
+    }
+  }, [voted, questionData, selectedChoice]);
 
   return (
     <div className="detail-container">
@@ -74,7 +114,7 @@ export default function DetailScreen() {
                   value={index}
                   checked={selectedChoice === index}
                   onChange={(event) => {
-                    if (event.target.checked) {
+                    if (event.target.checked && !voted) {
                       setSelectedChoice(index);
                     }
                   }}
@@ -92,7 +132,12 @@ export default function DetailScreen() {
         <div className="divider" />
         <div className="button-container">
           <Button secondary>Share</Button>
-          <Button disabled={selectedChoice === null}>Vote</Button>
+          <Button
+            disabled={selectedChoice === null || voted}
+            onClick={voteAction}
+          >
+            Vote
+          </Button>
         </div>
       </div>
     </div>
