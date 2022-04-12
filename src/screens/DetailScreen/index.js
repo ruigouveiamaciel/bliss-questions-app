@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import Button from "../../components/general/Button";
+import Button from "../../components/inputs/Button";
 import getQuestionData from "../../api/getQuestionData";
 import useCancel from "../../hooks/useCancel";
 import "./styles.css";

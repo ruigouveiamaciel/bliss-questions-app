@@ -1,5 +1,5 @@
 import Spinner from "../../components/feedback/Spinner";
-import Button from "../../components/general/Button";
+import Button from "../../components/inputs/Button";
 import PropTypes from "prop-types";
 import "./styles.css";
 

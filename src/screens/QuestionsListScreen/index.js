@@ -1,4 +1,4 @@
-import Button from "../../components/general/Button";
+import Button from "../../components/inputs/Button";
 import useDebounce from "../../hooks/useDebounce";
 import useInfiniteLoading from "../../hooks/useInfiniteLoading";
 import { useState, useEffect, useCallback, useRef } from "react";
