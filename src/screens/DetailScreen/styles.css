@@ -1,6 +1,6 @@
 .detail-container {
   width: 100%;
-  max-width: 37.5rem;
+  max-width: calc(37.5rem + 2px);
 
   display: flex;
   flex-direction: column;
