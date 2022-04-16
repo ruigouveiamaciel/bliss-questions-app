@@ -93,6 +93,7 @@ export default function QuestionsListScreen() {
           placeholder="Search"
           value={filter}
           onChange={(event) => setFilter(event.target.value)}
+          whiteBackground
         />
         <Button error disabled={filter === ""} onClick={() => setFilter("")}>
           Clear

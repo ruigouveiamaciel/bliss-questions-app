@@ -2,6 +2,11 @@
   min-width: 0;
   box-sizing: border-box;
   padding: 0.5rem 1rem;
+  background: var(--color-gray-50);
+}
+
+.card.text-input.white {
+  background: var(--color-white);
 }
 
 .card.text-input:focus {
