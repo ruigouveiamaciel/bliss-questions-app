@@ -17,6 +17,7 @@ export default function Button({
       className={
         className ? `${defaultClassName} ${className}` : defaultClassName
       }
+      disabled={disabled}
       {...props}
     />
   );
