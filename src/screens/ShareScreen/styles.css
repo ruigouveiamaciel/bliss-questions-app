@@ -1,0 +1,24 @@
+.card.detail-card {
+  box-sizing: border-box;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  max-width: calc(37.5rem + 2px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.detail-card label {
+  margin-bottom: 0.5rem;
+}
+
+.detail-card .button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 0.75rem;
+  border-top: 1px solid var(--color-gray-200);
+  padding-top: 0.75rem;
+  gap: 0.5rem;
+}
