@@ -1,0 +1,22 @@
+.no-connectivity-container {
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no-connectivity-container h3 {
+  font-size: var(--text-size-very-large);
+  font-weight: var(--text-weight-medium);
+  text-transform: uppercase;
+  margin: 0 0 1rem 0;
+}
+
+.no-connectivity-container p {
+  margin: 0 0 0.25rem 0;
+}
+
+.no-connectivity-container p:last-child {
+  margin: 0;
+}

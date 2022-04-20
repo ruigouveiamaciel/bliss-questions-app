@@ -25,3 +25,7 @@ main.container > div {
   justify-content: center;
   align-items: center;
 }
+
+main.container > div.hidden {
+  display: none;
+}

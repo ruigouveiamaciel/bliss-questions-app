@@ -2,11 +2,13 @@ import { useState, useEffect, useCallback } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import getHealthStatus from "../api/getHealthStatus";
 import useCancel from "../hooks/useCancel";
+import useConnectivity from "../hooks/useConnectivity";
 import "./App.css";
 import HealthCheckScreen from "../screens/HealthCheckScreen";
 import QuestionsListScreen from "../screens/QuestionsListScreen";
 import DetailScreen from "../screens/DetailScreen";
 import ShareScreen from "../screens/ShareScreen";
+import NoConnectivityScreen from "../screens/NoConnectivityScreen";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -42,9 +44,11 @@ export default function App() {
     fetchHealthStatus();
   }, []);
 
+  const isConnected = useConnectivity();
+
   return (
     <main className="container">
-      <div>
+      <div className={!isConnected && healthy ? "hidden" : undefined}>
         {loading || !healthy ? (
           <HealthCheckScreen
             failed={!loading && !healthy}
@@ -63,6 +67,11 @@ export default function App() {
           </Routes>
         )}
       </div>
+      {!isConnected && healthy && (
+        <div>
+          <NoConnectivityScreen />
+        </div>
+      )}
     </main>
   );
 }
