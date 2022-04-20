@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
 import "./styles.css";
 
+/*
+ * Simple colored button.
+ */
 export default function Button({
   error,
   secondary,
@@ -25,7 +28,16 @@ export default function Button({
 
 Button.propTypes = {
   className: PropTypes.string,
+  /*
+   * Whether or not the button should have the error color.
+   */
   error: PropTypes.bool,
+  /*
+   * Whether or not the button should have the secondary color.
+   */
   secondary: PropTypes.bool,
+  /*
+   * Whether the button is disabled or not.
+   */
   disabled: PropTypes.bool,
 };

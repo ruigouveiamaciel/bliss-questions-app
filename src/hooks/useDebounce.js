@@ -7,12 +7,15 @@ import useCancel from "./useCancel";
  * given delay.
  *
  * @param {any} value The input value to debounce.
- * @param {number} delay The amount (in milliseconds) toof time to wait before
+ * @param {number} delay The amount of time (in milliseconds) to wait before
  * updating the debounced value.
  * @returns {any} The debounced value.
  */
 export default function useDebounce(value, delay) {
+  // State to hold the debounced value.
   const [debouncedValue, setDebouncedValue] = useState(value);
+  // Custom hook to prevent updating state after the component has been
+  // unmounted.
   const isCancelled = useCancel();
 
   useEffect(() => {

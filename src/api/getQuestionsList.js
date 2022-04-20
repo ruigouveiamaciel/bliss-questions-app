@@ -1,14 +1,15 @@
 import api from "./api.js";
 
 /*
- * Fetches the API and retrieves a list of questions.
+ * Fetches and returns a list of questions.
  *
  * @async
  * @param {number} limit Number of questions to fetch.
  * @param {number} offset Number of questions to skip.
- * @param {String|undefined} filter The search filter.
- * @returns {(Array|false)} false if the http request failed, otherwise an array
- * of questions according to the API specification.
+ * @param {String|undefined} filter The search filter, optional.
+ * @returns {(Array|false)} If successful, an array of objects containing
+ * information on every fetched question. False if the HTTP request was not
+ * successful.
  */
 export default async function getQuestionsList(
   limit,

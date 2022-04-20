@@ -2,7 +2,11 @@ import { useRef } from "react";
 import PropTypes from "prop-types";
 import "./styles.css";
 
+/*
+ * Radio input component.
+ */
 export default function Radio({ label, checked, ...props }) {
+  // Input reference. Used to increase the click area of the input.
   const ref = useRef();
 
   return (
@@ -22,4 +26,13 @@ export default function Radio({ label, checked, ...props }) {
   );
 }
 
-Radio.propTypes = { label: PropTypes.node, checked: PropTypes.bool };
+Radio.propTypes = {
+  /*
+   * The label's content
+   */
+  label: PropTypes.node,
+  /*
+   * Whether the radio is checked or not.
+   */
+  checked: PropTypes.bool,
+};

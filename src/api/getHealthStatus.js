@@ -1,10 +1,10 @@
 import api from "./api.js";
 
 /*
- * Fetches the API and checks the server health.
+ * Returns whether or not the API is healthy.
  *
  * @async
- * @returns {boolean} true if the server is healthy, false otherwise.
+ * @returns {boolean} true if the api is healthy, false otherwise.
  */
 export default async function getHealthStatus() {
   const res = await api.get("/health");
