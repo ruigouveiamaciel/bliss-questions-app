@@ -9,5 +9,5 @@ import api from "./api.js";
 export default async function getHealthStatus() {
   const res = await api.get("/health");
 
-  return res.status === 200 && res.data.status === "OK";
+  return res.status === 200 && res.data && res.data.status === "OK";
 }

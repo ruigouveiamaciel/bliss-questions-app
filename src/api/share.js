@@ -14,5 +14,5 @@ export default async function share(email, url) {
     content_url: url,
   });
 
-  return res.status === 200 && res.data.status === "OK";
+  return res.status === 200 && res.data && res.data.status === "OK";
 }
