@@ -15,8 +15,13 @@ import useCancel from "./useCancel";
  * value representing whether the element is visible or not.
  */
 export default function useVisible() {
+  // Whether the component is visible or not.
   const [isVisible, setIsVisible] = useState(false);
+
+  // The reference of the element we want to check whether it is visible or not.
   const [ref, setRef] = useState(null);
+
+  // Custom hook to prevent changing state after component has been unmounted.
   const isCancelled = useCancel();
 
   useEffect(() => {

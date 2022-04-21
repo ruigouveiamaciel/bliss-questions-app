@@ -4,6 +4,8 @@ import "./styles.css";
 
 /*
  * Radio input component.
+ *
+ * @component
  */
 export default function Radio({ label, checked, ...props }) {
   // Input reference. Used to increase the click area of the input.

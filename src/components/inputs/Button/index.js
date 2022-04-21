@@ -3,6 +3,8 @@ import "./styles.css";
 
 /*
  * Simple colored button.
+ *
+ * @component
  */
 export default function Button({
   error,

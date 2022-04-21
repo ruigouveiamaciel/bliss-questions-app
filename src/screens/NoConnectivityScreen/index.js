@@ -2,6 +2,8 @@ import "./styles.css";
 
 /*
  * No connectivity screen.
+ *
+ * @component
  */
 export default function NoConnectivityScreen() {
   return (

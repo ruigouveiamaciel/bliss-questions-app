@@ -4,6 +4,8 @@ import "./styles.css";
 
 /*
  * Text input component.
+ *
+ * @component
  */
 const TextInput = forwardRef(
   ({ className = "", whiteBackground, ...props }, ref) => {

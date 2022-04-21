@@ -11,6 +11,8 @@ import updateQuestion from "../../api/updateQuestion";
 
 /*
  * Detail screen.
+ *
+ * @component
  */
 export default function DetailScreen() {
   // Retrieve question ID from params.
@@ -101,7 +103,8 @@ export default function DetailScreen() {
   // This hook returns the current location object.
   const location = useLocation();
 
-  const from = location.state ? location.state.from : null;
+  // Perseve filter when returning back to questions list.
+  const from = location.state ? location.state.from : "/questions";
 
   return (
     <div className="detail-container">

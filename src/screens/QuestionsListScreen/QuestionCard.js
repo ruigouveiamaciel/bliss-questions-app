@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 
 /*
  * Question card component
+ *
+ * @component
  */
 export default function QuestionCard({
   id,

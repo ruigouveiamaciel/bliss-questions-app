@@ -6,6 +6,11 @@ import useCancel from "../../hooks/useCancel";
 import share from "../../api/share";
 import "./styles.css";
 
+/*
+ * Share screen.
+ *
+ * @component
+ */
 export default function ShareScreen() {
   // This hook returns the current location object.
   const location = useLocation();

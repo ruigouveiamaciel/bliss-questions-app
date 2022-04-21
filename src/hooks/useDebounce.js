@@ -14,8 +14,8 @@ import useCancel from "./useCancel";
 export default function useDebounce(value, delay) {
   // State to hold the debounced value.
   const [debouncedValue, setDebouncedValue] = useState(value);
-  // Custom hook to prevent updating state after the component has been
-  // unmounted.
+
+  // Custom hook to prevent changing state after component has been unmounted.
   const isCancelled = useCancel();
 
   useEffect(() => {

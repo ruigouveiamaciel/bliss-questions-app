@@ -10,6 +10,8 @@ import TextInput from "../../components/inputs/TextInput";
 
 /*
  * Poll list and search
+ *
+ * @component
  */
 export default function QuestionsListScreen() {
   // This hook reads/writes search params.

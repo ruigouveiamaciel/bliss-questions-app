@@ -5,6 +5,8 @@ import "./styles.css";
 
 /*
  * Health check screen.
+ *
+ * @component
  */
 export default function HealthCheckScreen({ failed, onRetry }) {
   return (

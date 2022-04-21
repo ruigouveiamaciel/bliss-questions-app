@@ -12,14 +12,17 @@ import "./App.css";
 
 /*
  * Component that handles routing of the application.
+ *
+ * @component
  */
 export default function App() {
   // Whether or not we are checking the health of the API
   const [loading, setLoading] = useState(true);
+
   // Whether or not the API is healthy.
   const [healthy, setHealthy] = useState(false);
-  // Custom hook that prevents state being updated after the component has been
-  // unmounted.
+
+  // Custom hook to prevent changing state after component has been unmounted.
   const isCancelled = useCancel();
 
   const fetchHealthStatus = useCallback(() => {
@@ -27,20 +30,22 @@ export default function App() {
     setLoading(true);
     setHealthy(false);
 
+    // Check API health and update state accordingly.
     getHealthStatus()
       .then((healthy) => {
-        if (!isCancelled) {
-          setLoading(false);
-          setHealthy(healthy);
-        }
+        if (isCancelled) return healthy;
+
+        setLoading(false);
+        setHealthy(healthy);
 
         return healthy;
       })
       .catch(() => {
-        if (!isCancelled) {
-          setLoading(false);
-          setHealthy(false);
-        }
+        if (isCancelled) return;
+
+        // Failed to fetch health, consider it unhealthy
+        setLoading(false);
+        setHealthy(false);
       });
   }, []);
 

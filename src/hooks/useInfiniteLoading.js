@@ -17,10 +17,13 @@ import useCancel from "./useCancel";
 export default function useInfiniteLoading(callback, cooldown = 1000) {
   // Custom hook that checks whether an element is visible or not.
   const { isVisible, ref } = useVisible();
+
   // Custom hook to handle cooldowns
   const { onCooldown, setCooldown } = useCooldown();
+
   // Custom hook to prevent changing state after component has been unmounted.
   const isCancelled = useCancel();
+
   // A reference to hold whether the callback is running or not.
   // This is required to support asyncroumous callbacks.
   const runningRef = useRef(false);
