@@ -8,11 +8,18 @@ import getQuestionsList from "../../api/getQuestionsList";
 import { Link, useSearchParams } from "react-router-dom";
 import TextInput from "../../components/inputs/TextInput";
 
+/*
+ * Poll list and search
+ */
 export default function QuestionsListScreen() {
+  // This hook reads/writes search params.
   const [searchParams, setSearchParams] = useSearchParams();
+
+  // The current filter. Defaults to the "filter" search param.
   const [filter, setFilter] = useState(
     searchParams.has("filter") ? searchParams.get("filter") : ""
   );
+
   // Delay the filter state change so we don't fetch the api for every single
   // changed character
   const debouncedFilter = useDebounce(filter, 750);
@@ -35,9 +42,7 @@ export default function QuestionsListScreen() {
     );
 
     // Cancel processing if the HTTP request failed.
-    if (data === false) {
-      return;
-    }
+    if (data === false) return;
 
     // If we have reached the end of the list, disable infinite loading.
     if (data.length < pageSize) {
@@ -56,6 +61,7 @@ export default function QuestionsListScreen() {
     setPage(page + 1);
   }, [page, debouncedFilter, questions]);
 
+  // Custom hook that handles infinite loading.
   const ref = useInfiniteLoading(fetchQuestions, 1000);
 
   // Reset the questions list everytime time the filter is changed.

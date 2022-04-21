@@ -7,45 +7,50 @@ import share from "../../api/share";
 import "./styles.css";
 
 export default function ShareScreen() {
+  // This hook returns the current location object.
   const location = useLocation();
-  const isCancelled = useCancel();
 
-  // Return to question list in case this page was open incorrectly.
+  // Return to question list in case this page was been open incorrectly.
   if (location.state === null) {
     return <Navigate to="/questions" replace />;
   }
 
+  // Custom hook to prevent changing state after component has been unmounted.
+  const isCancelled = useCancel();
+
+  // The URL to share.
   const { from } = location.state;
 
   const navigate = useNavigate();
 
+  // The email to share the URL to.
   const [email, setEmail] = useState("");
+
+  // Whether the form is being submitted or not.
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Submit callback.
   const onSubmit = useCallback((event) => {
     event.preventDefault();
+    if (isSubmitting) return;
+    setIsSubmitting(true);
 
-    if (!isSubmitting) {
-      setIsSubmitting(true);
+    share(email, from)
+      .then((success) => {
+        if (isCancelled) return success;
 
-      share(email, from)
-        .then((success) => {
-          if (isCancelled) return success;
+        if (success) {
+          navigate(-1);
+        } else {
+          setIsSubmitting(false);
+        }
 
-          if (success) {
-            navigate(-1);
-          } else {
-            setIsSubmitting(false);
-          }
-
-          return success;
-        })
-        .catch(() => {
-          if (!isCancelled) {
-            setIsSubmitting(false);
-          }
-        });
-    }
+        return success;
+      })
+      .catch(() => {
+        if (isCancelled) return;
+        setIsSubmitting(false);
+      });
   }, []);
 
   return (

@@ -1,5 +1,8 @@
 import "./styles.css";
 
+/*
+ * No connectivity screen.
+ */
 export default function NoConnectivityScreen() {
   return (
     <div className="no-connectivity-container">

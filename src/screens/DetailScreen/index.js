@@ -9,14 +9,20 @@ import { faCheckToSlot, faClock } from "@fortawesome/free-solid-svg-icons";
 import Radio from "../../components/inputs/Radio";
 import updateQuestion from "../../api/updateQuestion";
 
+/*
+ * Detail screen.
+ */
 export default function DetailScreen() {
   // Retrieve question ID from params.
   const { questionID } = useParams();
 
+  // Custom hook to prevent updating state after component has been unmounted.
   const isCancelled = useCancel();
 
+  // Question data. Null if data is still loading (or failed to load).
   const [questionData, setQuestionData] = useState(null);
 
+  // Fetch question data when component is mounted.
   useEffect(() => {
     getQuestionData(questionID)
       .then((data) => {
@@ -27,57 +33,74 @@ export default function DetailScreen() {
       .catch(() => {});
   }, []);
 
+  // Question title
   const title = questionData && questionData.question;
 
+  // Total number of votes
   const votes =
     questionData &&
     questionData.choices.reduce((sum, choice) => sum + choice.votes, 0);
 
+  // Question timestamp
   const timestamp =
     questionData && new Date(questionData.published_at).toLocaleString();
 
+  // Selected choice. Null for none selected.
   const [selectedChoice, setSelectedChoice] = useState(null);
 
+  // Whether or not the client has already voted.
   const [voted, setVoted] = useState(false);
 
+  // Vote button callback
   const voteAction = useCallback(() => {
-    if (!voted && selectedChoice !== null) {
-      const oldQuestionData = questionData;
-      const newQuestionData = {
-        ...questionData,
-        choices: [...questionData.choices],
-      };
+    // If we have already voted or there is no selected choice, cancel callback.
+    if (voted || selectedChoice === null) return;
 
-      newQuestionData.choices[selectedChoice] = {
-        ...newQuestionData.choices[selectedChoice],
-        votes: newQuestionData.choices[selectedChoice].votes + 1,
-      };
+    // Build new question data and increase selected choice vote count by 1.
+    const oldQuestionData = questionData;
+    const newQuestionData = {
+      ...questionData,
+      choices: [...questionData.choices],
+    };
 
-      setVoted(true);
-      setQuestionData(newQuestionData);
-      updateQuestion(newQuestionData)
-        .then((res) => {
-          if (!isCancelled) {
-            if (res !== false) {
-              setQuestionData(res);
-            } else {
-              setVoted(false);
-              setQuestionData(oldQuestionData);
-            }
-          }
+    newQuestionData.choices[selectedChoice] = {
+      ...newQuestionData.choices[selectedChoice],
+      votes: newQuestionData.choices[selectedChoice].votes + 1,
+    };
 
-          return res;
-        })
-        .catch(() => {
-          if (!isCancelled) {
-            setVoted(false);
-            setQuestionData(oldQuestionData);
-          }
-        });
-    }
+    // Update, temporarily, the state of the component to what we're expecting
+    // the returned data to be.
+    setVoted(true);
+    setQuestionData(newQuestionData);
+
+    // Update the question and then update the state when the updated data
+    // is returned.
+    updateQuestion(newQuestionData)
+      .then((res) => {
+        if (isCancelled) return res;
+
+        if (res !== false) {
+          setQuestionData(res);
+        } else {
+          // Updated failed, restore old state.
+          setVoted(false);
+          setQuestionData(oldQuestionData);
+        }
+
+        return res;
+      })
+      .catch(() => {
+        if (isCancelled) return;
+
+        // Update failed, restore old state.
+        setVoted(false);
+        setQuestionData(oldQuestionData);
+      });
   }, [voted, questionData, selectedChoice]);
 
+  // This hook returns the current location object.
   const location = useLocation();
+
   const from = location.state ? location.state.from : null;
 
   return (

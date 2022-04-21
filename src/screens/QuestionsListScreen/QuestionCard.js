@@ -4,6 +4,9 @@ import PropTypes from "prop-types";
 import "./QuestionCard.css";
 import { Link } from "react-router-dom";
 
+/*
+ * Question card component
+ */
 export default function QuestionCard({
   id,
   bannerSrc,
@@ -43,10 +46,28 @@ export default function QuestionCard({
 }
 
 QuestionCard.propTypes = {
+  /*
+   * The id of the question.
+   */
   id: PropTypes.number,
+  /*
+   * The source of the question banner.
+   */
   bannerSrc: PropTypes.string,
+  /*
+   * The banner alt text.
+   */
   bannerAlt: PropTypes.string,
+  /*
+   * The question itself.
+   */
   title: PropTypes.string,
+  /*
+   * The total amount of votes.
+   */
   votes: PropTypes.number,
+  /*
+   * The timestamp the question was created.
+   */
   timestamp: PropTypes.string,
 };
